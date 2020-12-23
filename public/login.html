@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script defer src="login.js"></script>
+</head>
+
+<body>
+  <main id="main-holder">
+    <h1 id="login-header">Login</h1>
+
+    <div id="login-signup-error-msg-holder">
+
+    </div>
+
+    <form id="login-signup-form">
+      <input type="text" name="user_id" id="user_id" class="login-signup-form-field" placeholder="User_id">
+      <input type="password" name="password" id="password" class="login-signup-form-field" placeholder="Password">
+      <input type="submit" value="Login" id="login-signup-form-submit">
+    </form>
+    <a href="http://localhost:3000/signup">New user, signup here</a>
+
+  </main>
+</body>
+
+</html>
