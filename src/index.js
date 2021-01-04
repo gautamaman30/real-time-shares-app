@@ -34,6 +34,8 @@ wss.on('connection', (ws) => {
 
     ws.on('message', (message) => {
       const session = JSON.parse(message);
+      fetchCurrentUserShares(session, ws)
+       .then((res) => res);
       em.on('UpdateUserShares', () => {
         fetchCurrentUserShares(session, ws)
          .then((res) => res);
