@@ -14,25 +14,30 @@
     <script>
     (function (){
       if(sessionStorage.getItem('session_id')){
+        let user = JSON.parse(sessionStorage.getItem('user'));
+        let h1 = document.createElement("h1");
+        h1.innerHTML = `Username : ${user.name}`;
+        document.getElementById('shares-holder-name').appendChild(h1);
+
         let ws = new WebSocket('ws://' + 'localhost:3000');
           ws.onopen = (e) => {
             console.log('connected');
             ws.send(sessionStorage.getItem('session'));
           }
           ws.onmessage = (message) => {
-          let arr = JSON.parse(message.data);
-          let shareDiv = document.getElementById('shares-holder');
-          shareDiv.innerHTML = '';
-          let ulList = document.createElement('ul');
-          ulList.setAttribute("id", "shares-list");
-          arr.forEach((item) => {
-            let childList = document.createElement('li');
-            childList.innerHTML = JSON.stringify(item);
-            ulList.appendChild(childList);
-          });
-          shareDiv.appendChild(ulList);
-          console.log(shareDiv);
-        }
+            let arr = JSON.parse(message.data);
+            let shareDiv = document.getElementById('shares-holder');
+            shareDiv.innerHTML = '';
+            let ulList = document.createElement('ol');
+            ulList.setAttribute("id", "shares-list");
+            arr.forEach((item) => {
+              let childList = document.createElement('li');
+              childList.innerHTML = `Company Name: ${item.name}         Shares qt: ${item.quantity}         Shares price(each): ${item.value} USD`;
+              ulList.appendChild(childList);
+            });
+            shareDiv.appendChild(ulList);
+            console.log(shareDiv);
+          }
       }
       else{
         window.location = "http://localhost:3000/login"

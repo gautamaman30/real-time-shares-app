@@ -10,6 +10,7 @@ signupButton.addEventListener("click", (e) => {
   userInfo.confirm_password = signupForm.confirm_password.value;
   axios.post('http://localhost:3000/api/v1/user/signup', userInfo)
   .then( res => {
+    sessionStorage.setItem('user', JSON.stringify(res.data.user));
     sessionStorage.setItem('session', JSON.stringify(res.data.session));
     sessionStorage.setItem('session_id', res.data.session.session_id);
     window.location = "http://localhost:3000/";
